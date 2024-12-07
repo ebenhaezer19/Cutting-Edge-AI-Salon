@@ -1,32 +1,33 @@
 
 Cutting Edge (AI Salon)
 
-How To Run? (Always 2 Server On)
+How To Run BACKEND and FRONTEND? (Always 2 Server On)
 
 - locate your path to our github path file with git clone
-- curl -L "https://github.com/italojs/facial-landmarks-recognition/raw/master/shape_predictor_68_face_landmarks.dat" -o shape_predictor_68_face_landmarks.dat
-- python HairstyleDetection/server.py 
-- npm run dev
+- python download_model.py (with conda environment)
+- python HairstyleDetection/server.py (with conda environment)
+- yarn run dev (install please) alternative with npm 
 - Enjoy
 
 
 Program ini dirancang bersama oleh: 
+- Krisopras Eben Haezer
 - Bryan Sean Abner. M
 - Jeldy Joshua
 - Timothy Rudolf Tan
-- Krisopras Eben Haezer
 
 
 
-![image](https://github.com/user-attachments/assets/b23fb1f7-7c54-462d-b05c-ccea3fa06dec)
+![image](https://github.com/user-attachments/assets/48d1e766-18fc-47de-adfe-ea34573c8e34)
+![image](https://github.com/user-attachments/assets/7a8c0a7e-3e9a-414b-9e77-e6762bf7d714)
+![image](https://github.com/user-attachments/assets/8b0520bc-de70-4034-ac0a-c5c222e19aab)
 
-![image](https://github.com/user-attachments/assets/31718118-fd1f-408e-ab09-c63adb47eb04)
 
-![image](https://github.com/user-attachments/assets/c3efa1eb-47fb-41c7-88a2-233b478559df)
 
-![image](https://github.com/user-attachments/assets/e2ace6cc-036b-478d-abd0-c2c4fdd42fd2)
 
-![image](https://github.com/user-attachments/assets/a30346cc-9478-4ea0-ac0e-4ce58d9eced9)
+
+
+
 
 
 
