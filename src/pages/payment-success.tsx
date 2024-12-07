@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const PaymentSuccess = () => {
@@ -7,6 +7,22 @@ const PaymentSuccess = () => {
   const handleScanClick = () => {
     navigate('/webcam');
   };
+
+  useEffect(() => {
+    // Set status pembayaran berhasil hanya jika dari halaman payment
+    const fromPayment = localStorage.getItem('fromPayment');
+    if (fromPayment === 'true') {
+      localStorage.setItem('paymentStatus', 'success');
+      localStorage.removeItem('fromPayment');
+      
+      // Redirect ke services setelah 3 detik
+      const timer = setTimeout(() => {
+        window.location.href = '/#services';
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
@@ -21,12 +37,6 @@ const PaymentSuccess = () => {
         >
           Scan Sekarang
         </button>
-        <a
-          href="/"
-          className="mt-5 px-5 py-3 bg-green-700 text-white text-base font-bold rounded-md shadow hover:bg-green-800 transition-colors"
-        >
-          Kembali ke Beranda
-        </a>
       </div>
     </div>
   );

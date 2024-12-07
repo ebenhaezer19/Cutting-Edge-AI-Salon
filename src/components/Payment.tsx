@@ -42,8 +42,8 @@ export default function Payment() {
     let timer: ReturnType<typeof setTimeout> | null = null;
     if (paymentSimulation) {
       timer = setTimeout(() => {
-        // Setelah 7 detik, arahkan ke halaman lain
-        localStorage.removeItem('selectedService'); // Hapus status setelah pembayaran selesai
+        localStorage.setItem('fromPayment', 'true');
+        localStorage.removeItem('selectedService');
         window.location.href = '/payment-success';
       }, 7000);
     }

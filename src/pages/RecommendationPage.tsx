@@ -9,125 +9,124 @@ interface HairstyleRecommendation {
   price: string;
 }
 
-// 5 set rekomendasi gaya rambut wanita
 const recommendationSets = [
-  // Set 1: Gaya Klasik Wanita
+  // Set 1: Gaya Klasik
   [
     {
       id: 1,
       name: "Long Layered Cut",
       description: "Potongan berlapis panjang yang membingkai wajah dengan anggun.",
-      imageUrl: "https://i.pinimg.com/564x/8c/b5/8b/8cb58b5c8e3a6d6a3f6d17c4def9c2d0.jpg",
+      imageUrl: "/images/hairstyles/long-layered.jpg",
       price: "Rp 60.000"
     },
     {
       id: 2,
       name: "Classic Bob",
       description: "Potongan bob klasik sebahu yang cocok untuk semua bentuk wajah.",
-      imageUrl: "https://i.pinimg.com/564x/c7/8f/c6/c78fc6d8e71d4cde31d05e3e123e96f3.jpg", 
+      imageUrl: "/images/hairstyles/classic-bob.jpg",
       price: "Rp 60.000"
     },
     {
       id: 3,
       name: "Side-Swept Bangs",
       description: "Poni menyamping yang lembut dan feminin.",
-      imageUrl: "https://i.pinimg.com/564x/d7/7c/17/d77c17d6148906a8318294562d0660c1.jpg",
+      imageUrl: "/images/hairstyles/side-swept.jpg",
       price: "Rp 60.000"
     }
   ],
-  // Set 2: Gaya Modern Wanita
+  // Set 2: Gaya Modern
   [
     {
       id: 1,
       name: "Pixie Cut",
       description: "Potongan pendek modern yang berani dan chic.",
-      imageUrl: "https://i.pinimg.com/564x/f5/c9/16/f5c916e0f7b16ad0ed73d1742f0e9a76.jpg",
+      imageUrl: "/images/hairstyles/pixie.jpg",
       price: "Rp 65.000"
     },
     {
-      id: 2, 
+      id: 2,
       name: "Textured Lob",
       description: "Long bob bertekstur yang trendy dan mudah diatur.",
-      imageUrl: "https://i.pinimg.com/564x/e9/e8/7c/e9e87c60b15ebcf0d9957f1c87d53e9d.jpg",
+      imageUrl: "/images/hairstyles/textured-lob.jpg",
       price: "Rp 65.000"
     },
     {
       id: 3,
       name: "Shaggy Layers",
       description: "Layer bertingkat yang memberikan volume dan gerakan.",
-      imageUrl: "https://i.pinimg.com/564x/b0/13/33/b01333f5ea13f15459e40c464b12a101.jpg",
+      imageUrl: "/images/hairstyles/shaggy.jpg",
       price: "Rp 65.000"
     }
   ],
-  // Set 3: Gaya Korea Wanita
+  // Set 3: Gaya Korea
   [
     {
       id: 1,
       name: "Korean See-Through Bangs",
       description: "Poni tipis transparan ala Korea yang lembut.",
-      imageUrl: "https://i.pinimg.com/564x/e9/0a/a0/e90aa0666b831f0f9e7d5f9138d67b6c.jpg",
+      imageUrl: "/images/hairstyles/see-through.jpg",
       price: "Rp 60.000"
     },
     {
       id: 2,
       name: "C-Curl Bob",
       description: "Bob pendek dengan ujung melengkung ke dalam.",
-      imageUrl: "https://i.pinimg.com/564x/b7/f7/3d/b7f73d9f4f3c2c6b0f3c8d0f9c9b8c7a.jpg",
+      imageUrl: "/images/hairstyles/c-curl.jpg",
       price: "Rp 60.000"
     },
     {
       id: 3,
       name: "Air Bangs",
       description: "Poni ringan dan natural yang membingkai wajah.",
-      imageUrl: "https://i.pinimg.com/564x/d8/e9/f0/d8e9f0b3c7d6f5c4b2c1d0f8c7b6a5d4.jpg",
+      imageUrl: "/images/hairstyles/air-bangs.jpg",
       price: "Rp 60.000"
     }
   ],
-  // Set 4: Gaya Elegan Wanita
+  // Set 4: Gaya Elegan
   [
     {
       id: 1,
       name: "Sleek Straight",
-      description: "Rambut lurus mengkilap yang elegan dan sophisticated.",
-      imageUrl: "https://i.pinimg.com/564x/c6/d5/e4/c6d5e4b3c2d1f8c7b6a5d4c3b2a1f8e7.jpg",
+      description: "Rambut lurus mengkilap yang elegan.",
+      imageUrl: "/images/hairstyles/sleek.jpg",
       price: "Rp 60.000"
     },
     {
       id: 2,
       name: "Soft Waves",
-      description: "Gelombang lembut yang romantis dan feminin.",
-      imageUrl: "https://i.pinimg.com/564x/a9/b8/c7/a9b8c7d6e5f4c3b2a1d0f8c7b6a5d4c3.jpg",
+      description: "Gelombang lembut yang romantis.",
+      imageUrl: "/images/hairstyles/soft-waves.jpg",
       price: "Rp 60.000"
     },
     {
       id: 3,
       name: "Elegant Updo",
       description: "Sanggul modern yang cocok untuk acara formal.",
-      imageUrl: "https://i.pinimg.com/564x/f4/e3/d2/f4e3d2b1c0d9e8a7b6a5d4c3b2a1f8e7.jpg",
+      imageUrl: "/images/hairstyles/updo.jpg",
       price: "Rp 60.000"
     }
   ],
-  // Set 5: Gaya Trendy Wanita
+  // Set 5: Gaya Trendy
   [
     {
       id: 1,
       name: "Curtain Bangs",
       description: "Poni terbelah tengah yang sedang tren.",
-      imageUrl: "https://i.pinimg.com/564x/b5/c4/d3/b5c4d3b1c0d9e8a7b6a5d4c3b2a1f8e7.jpg",
+      imageUrl: "/images/hairstyles/curtain.jpg",
       price: "Rp 60.000"
     },
     {
       id: 2,
       name: "Butterfly Cut",
       description: "Layer bertingkat yang memberikan efek kupu-kupu.",
-      imageUrl: "https://i.pinimg.com/564x/e2/d1/c0/e2d1c0b1c0d9e8a7b6a5d4c3b2a1f8e7.jpg",
+      imageUrl: "/images/hairstyles/butterfly.jpg",
       price: "Rp 60.000"
     },
     {
       id: 3,
       name: "Wolf Cut",
       description: "Potongan edgy dengan layer bertingkat yang trendy.",
-      imageUrl: "https://i.pinimg.com/564x/a1/b2/c3/a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5.jpg",
+      imageUrl: "/images/hairstyles/wolf.jpg",
       price: "Rp 60.000"
     }
   ]
@@ -138,10 +137,17 @@ const RecommendationPage: React.FC = () => {
   const [selectedSet, setSelectedSet] = useState<HairstyleRecommendation[]>([]);
 
   useEffect(() => {
-    // Pilih set rekomendasi secara random saat komponen dimount
     const randomIndex = Math.floor(Math.random() * recommendationSets.length);
     setSelectedSet(recommendationSets[randomIndex]);
   }, []);
+
+  const handleBooking = (style: HairstyleRecommendation) => {
+    // Simpan informasi gaya yang dipilih
+    localStorage.setItem('selectedHairstyle', style.name);
+    localStorage.setItem('selectedPrice', style.price);
+    localStorage.setItem('isHaircutService', 'true');
+    navigate('/booking-success');
+  };
 
   return (
     <div className="min-h-screen bg-amber-50 py-12 px-4">
@@ -180,7 +186,7 @@ const RecommendationPage: React.FC = () => {
                 <p className="text-gray-600 mb-4">{style.description}</p>
                 <p className="text-lg font-bold text-amber-600 mb-4">{style.price}</p>
                 <button 
-                  onClick={() => navigate('/')}
+                  onClick={() => handleBooking(style)}
                   className="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded transition-colors"
                 >
                   Booking Sekarang
@@ -188,15 +194,6 @@ const RecommendationPage: React.FC = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="mt-8 text-center">
-          <button
-            onClick={() => navigate('/webcam')}
-            className="text-amber-600 hover:text-amber-700 font-semibold"
-          >
-            ← Kembali ke Kamera
-          </button>
         </div>
       </div>
     </div>

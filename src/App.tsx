@@ -11,6 +11,7 @@ import WebcamPage from './pages/WebcamPage';
 import ErrorBoundary from './components/ErrorBoundary';
 import RecommendationPage from './pages/RecommendationPage';
 import ColorRecommendationPage from './pages/ColorRecommendationPage';
+import BookingSuccess from './pages/booking-success';
 
 function MainContent() {
   return (
@@ -36,6 +37,7 @@ function App() {
               <Route path="/webcam" element={<WebcamPage />} />
               <Route path="/recommendation" element={<RecommendationPage />} />
               <Route path="/color-recommendation" element={<ColorRecommendationPage />} />
+              <Route path="/booking-success" element={<BookingSuccess />} />
             </Routes>
           </main>
           <Footer />

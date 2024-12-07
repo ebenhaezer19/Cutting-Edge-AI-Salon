@@ -1,6 +1,6 @@
 import { Scissors } from 'lucide-react';
 import { PaintBrush } from './icons/PaintBrush';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Services() {
   const [showPopup1, setShowPopup1] = useState(false);
@@ -25,8 +25,21 @@ export default function Services() {
 
   const handleService = (type: string) => {
     localStorage.setItem('serviceType', type);
-    window.location.href = '/webcam';
+    localStorage.setItem('selectedService', 'true');
+    window.dispatchEvent(new Event('storage'));
+    window.location.href = '/#payment';
   };
+
+  useEffect(() => {
+    const paymentStatus = localStorage.getItem('paymentStatus');
+    if (paymentStatus === 'success') {
+      localStorage.removeItem('paymentStatus');
+      const serviceType = localStorage.getItem('serviceType');
+      if (serviceType) {
+        window.location.href = '/webcam';
+      }
+    }
+  }, []);
 
   return (
     <section id="services" className="py-16 bg-amber-50">
@@ -68,13 +81,13 @@ export default function Services() {
             <div className="text-center">
               <h3 className="text-xl font-semibold mb-4 hover:text-amber-700 transition-colors duration-300">Potong Rambut dengan AI</h3>
               <p className="text-gray-600 mb-4 hover:text-amber-600 transition-colors duration-300">
-                Lanjutkan untuk analisis bentuk wajah Anda.
+                Lanjutkan ke pembayaran untuk memulai analisis.
               </p>
               <button 
                 className="inline-block bg-amber-700 text-white py-2 px-4 rounded hover:bg-amber-600 transform hover:translate-y-[-4px] hover:shadow-lg transition-all duration-300"
                 onClick={() => handleService('haircut')}
               >
-                Mulai Analisis
+                Lanjut ke Pembayaran
               </button>
             </div>
           </div>
@@ -87,13 +100,13 @@ export default function Services() {
             <div className="text-center">
               <h3 className="text-xl font-semibold mb-4 hover:text-amber-700 transition-colors duration-300">Pewarnaan Rambut Pintar</h3>
               <p className="text-gray-600 mb-4 hover:text-amber-600 transition-colors duration-300">
-                Lanjutkan untuk analisis warna kulit Anda.
+                Lanjutkan ke pembayaran untuk memulai analisis.
               </p>
               <button
                 className="inline-block bg-amber-700 text-white py-2 px-4 rounded hover:bg-amber-600 transform hover:translate-y-[-4px] hover:shadow-lg transition-all duration-300"
                 onClick={() => handleService('color')}
               >
-                Mulai Analisis
+                Lanjut ke Pembayaran
               </button>
             </div>
           </div>

@@ -18,24 +18,119 @@ const colorRecommendationSets = [
       name: "Chocolate Brown",
       description: "Warna coklat hangat yang natural dan cocok untuk kulit Asia.",
       imageUrl: "/images/colors/chocolate-brown.jpg",
-      price: "Rp 350.000"
+      price: "Rp 40.000"
     },
     {
       id: 2,
       name: "Caramel Highlights",
       description: "Highlight karamel yang memberikan dimensi natural.",
       imageUrl: "/images/colors/caramel-highlights.jpg",
-      price: "Rp 450.000"
+      price: "Rp 40.000"
     },
     {
       id: 3,
       name: "Ash Brown",
       description: "Coklat abu-abu yang elegan dan modern.",
       imageUrl: "/images/colors/ash-brown.jpg",
-      price: "Rp 400.000"
+      price: "Rp 40.000"
     }
   ],
-  // ... tambahkan set warna lainnya seperti yang ada di file sebelumnya
+  // Set 2: Warna Bold
+  [
+    {
+      id: 1,
+      name: "Burgundy Red",
+      description: "Merah keunguan yang berani dan mewah.",
+      imageUrl: "/images/colors/burgundy-red.jpg", 
+      price: "Rp 45.000"
+    },
+    {
+      id: 2,
+      name: "Royal Purple",
+      description: "Ungu kebiruan yang unik dan mencolok.",
+      imageUrl: "/images/colors/royal-purple.jpg",
+      price: "Rp 45.000"
+    },
+    {
+      id: 3,
+      name: "Deep Blue",
+      description: "Biru gelap yang misterius dan edgy.",
+      imageUrl: "/images/colors/deep-blue.jpg",
+      price: "Rp 45.000"
+    }
+  ],
+  // Set 3: Warna Pastel
+  [
+    {
+      id: 1,
+      name: "Rose Gold",
+      description: "Pink keemasan yang lembut dan feminin.",
+      imageUrl: "/images/colors/rose-gold.jpg",
+      price: "Rp 50.000"
+    },
+    {
+      id: 2,
+      name: "Lavender Grey",
+      description: "Abu-abu keunguan yang soft dan trendy.",
+      imageUrl: "/images/colors/lavender-grey.jpg",
+      price: "Rp 50.000"
+    },
+    {
+      id: 3,
+      name: "Mint Green",
+      description: "Hijau mint yang segar dan unik.",
+      imageUrl: "/images/colors/mint-green.jpg",
+      price: "Rp 50.000"
+    }
+  ],
+  // Set 4: Warna Blonde
+  [
+    {
+      id: 1,
+      name: "Honey Blonde",
+      description: "Pirang madu yang hangat dan manis.",
+      imageUrl: "/images/colors/honey-blonde.jpg",
+      price: "Rp 55.000"
+    },
+    {
+      id: 2,
+      name: "Platinum Blonde",
+      description: "Pirang pucat yang dramatis dan eye-catching.",
+      imageUrl: "/images/colors/platinum-blonde.jpg",
+      price: "Rp 55.000"
+    },
+    {
+      id: 3,
+      name: "Ash Blonde",
+      description: "Pirang keabuan yang sophisticated.",
+      imageUrl: "/images/colors/ash-blonde.jpg",
+      price: "Rp 55.000"
+    }
+  ],
+  // Set 5: Warna Ombre
+  [
+    {
+      id: 1,
+      name: "Caramel Ombre",
+      description: "Gradasi dari coklat gelap ke karamel.",
+      imageUrl: "/images/colors/caramel-ombre.jpg",
+      price: "Rp 60.000"
+    },
+    {
+      id: 2,
+      name: "Silver Ombre",
+      description: "Gradasi dari hitam ke abu-abu metalik.",
+      imageUrl: "/images/colors/silver-ombre.jpg",
+      price: "Rp 60.000"
+    },
+    {
+      id: 3,
+      name: "Rainbow Ombre",
+      description: "Gradasi warna-warni yang playful.",
+      imageUrl: "/images/colors/rainbow-ombre.jpg",
+      price: "Rp 60.000"
+    }
+  ]
 ];
 
 const ColorRecommendationPage: React.FC = () => {
@@ -46,6 +141,14 @@ const ColorRecommendationPage: React.FC = () => {
     const randomIndex = Math.floor(Math.random() * colorRecommendationSets.length);
     setSelectedSet(colorRecommendationSets[randomIndex]);
   }, []);
+
+  const handleBooking = (color: HairColorRecommendation) => {
+    // Simpan informasi warna yang dipilih
+    localStorage.setItem('selectedColor', color.name);
+    localStorage.setItem('selectedPrice', color.price);
+    localStorage.setItem('isColorService', 'true');
+    navigate('/booking-success');
+  };
 
   return (
     <div className="min-h-screen bg-amber-50 py-12 px-4">
@@ -84,7 +187,7 @@ const ColorRecommendationPage: React.FC = () => {
                 <p className="text-gray-600 mb-4">{color.description}</p>
                 <p className="text-lg font-bold text-amber-600 mb-4">{color.price}</p>
                 <button 
-                  onClick={() => navigate('/')}
+                  onClick={() => handleBooking(color)}
                   className="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded transition-colors"
                 >
                   Booking Sekarang
@@ -92,15 +195,6 @@ const ColorRecommendationPage: React.FC = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="mt-8 text-center">
-          <button
-            onClick={() => navigate('/webcam')}
-            className="text-amber-600 hover:text-amber-700 font-semibold"
-          >
-            ← Kembali ke Kamera
-          </button>
         </div>
       </div>
     </div>
