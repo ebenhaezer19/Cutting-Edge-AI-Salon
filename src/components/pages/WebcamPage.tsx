@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface Landmark {
   x: number;
@@ -19,6 +20,7 @@ interface FaceData {
 }
 
 const WebcamPage: React.FC = () => {
+  const navigate = useNavigate();
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
@@ -40,55 +42,102 @@ const WebcamPage: React.FC = () => {
       setIsLoading(true);
       setError('');
       
-      // Stop existing stream
       stopCamera();
 
-      // Cek apakah kamera sedang digunakan
-      try {
-        const devices = await navigator.mediaDevices.enumerateDevices();
-        const cameras = devices.filter(device => device.kind === 'videoinput');
-        
-        if (cameras.length === 0) {
-          throw new Error('Tidak ada kamera yang terdeteksi');
-        }
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      const cameras = devices.filter(device => device.kind === 'videoinput');
+      
+      if (cameras.length === 0) {
+        throw new Error('Tidak ada kamera yang terdeteksi');
+      }
 
-        const stream = await navigator.mediaDevices.getUserMedia({
-          video: {
-            width: { ideal: 1280 },
-            height: { ideal: 720 },
-            facingMode: 'user',
-            deviceId: cameras[0].deviceId // Gunakan kamera pertama yang tersedia
-          },
-          audio: false
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: {
+          width: { ideal: 1280 },
+          height: { ideal: 720 },
+          facingMode: 'user',
+          deviceId: cameras[0].deviceId
+        },
+        audio: false
+      });
+
+      streamRef.current = stream;
+      
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+        
+        await new Promise<void>((resolve, reject) => {
+          if (!videoRef.current) return reject(new Error('Video element tidak ditemukan'));
+          
+          const timeoutId = setTimeout(() => {
+            reject(new Error('Timeout menunggu video siap'));
+          }, 5000);
+          
+          videoRef.current.onloadedmetadata = () =>{
+            clearTimeout(timeoutId);
+            resolve();
+          };
+          
+          videoRef.current.onerror = (e) => {
+            clearTimeout(timeoutId);
+            reject(new Error(`Error loading video: ${e}`));
+          };
         });
 
-        streamRef.current = stream;
+        let retryCount = 0;
+        const maxRetries= 3;
         
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream;
-          await videoRef.current.play();
-          setCameraPermission(true);
+        while (retryCount < maxRetries) {
+          try {
+            await videoRef.current.play();
+            setCameraPermission(true);
+            break;
+          } catch (playError) {
+            console.warn(`Play attempt ${retryCount + 1} failed:`, playError);
+            retryCount++;
+            
+            if (retryCount === maxRetries) {
+              throw new Error('Gagal memulai video setelah beberapa percobaan');
+            }
+            
+            await new Promise(resolve => setTimeout(resolve, 500));
+          }
         }
-
-      } catch (mediaError: any) {
-        if (mediaError.name === 'NotReadableError') {
-          throw new Error('Kamera sedang digunakan aplikasi lain. Mohon tutup aplikasi tersebut terlebih dahulu.');
-        }
-        throw mediaError;
       }
 
     } catch (err) {
       console.error('Error accessing camera:', err);
       setError(err instanceof Error ? err.message : 'Gagal mengakses kamera');
       setCameraPermission(false);
+      stopCamera();
     } finally {
       setIsLoading(false);
     }
   }, [stopCamera]);
 
   useEffect(() => {
-    startCamera();
-    return stopCamera;
+    let mounted = true;
+   let cleanupTimeout: ReturnType<typeof setTimeout>;
+
+    const initCamera = async () => {
+      if (!mounted) return;
+      
+      cleanupTimeout = setTimeout(async () => {
+        if (mounted) {
+          await startCamera();
+        }
+      }, 100);
+    };
+
+    initCamera();
+
+    return () => {
+      mounted = false;
+      if (cleanupTimeout) {
+        clearTimeout(cleanupTimeout);
+      }
+      stopCamera();
+    };
   }, [startCamera, stopCamera]);
 
   const drawFaceLandmarks = useCallback(() => {
@@ -172,13 +221,25 @@ const WebcamPage: React.FC = () => {
     }
   };
 
+  const handleRecommendation = () => {
+    const serviceType = localStorage.getItem('serviceType');
+    if (serviceType === 'color') {
+      navigate('/color-recommendation');
+    } else {
+      navigate('/recommendation');
+    }
+  };
+
   return (
     <div className="webcam-container">
       {error ? (
         <div className="error-message">
           <p>{error}</p>
           <button 
-            onClick={startCamera}
+            onClick={() => {
+              setError('');
+              setTimeout(startCamera, 100);
+            }}
             disabled={isLoading}
             className="retry-button"
           >
@@ -204,19 +265,28 @@ const WebcamPage: React.FC = () => {
               className="landmark-canvas"
             />
           </div>
-          <button 
-            onClick={handleCapture}
-            className="capture-button"
-            disabled={!cameraPermission || isProcessing || isLoading}
-          >
-            {isProcessing ? 'Memproses...' : 'Ambil Foto'}
-          </button>
-          {faceData?.landmarks && Array.isArray(faceData.landmarks) && (
-            <div className="results">
-              <p>Wajah terdeteksi!</p>
-              <p>Jumlah landmark: {faceData.landmarks.length}</p>
-            </div>
-          )}
+          <div className="flex flex-col gap-4 items-center">
+            <button 
+              onClick={handleCapture}
+              className="capture-button bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-6 rounded"
+              disabled={!cameraPermission || isProcessing || isLoading}
+            >
+              {isProcessing ? 'Memproses...' : 'Ambil Foto'}
+            </button>
+            
+            {faceData?.landmarks && Array.isArray(faceData.landmarks) && (
+              <div className="results text-center">
+                <p className="text-green-600 font-semibold mb-2">Wajah terdeteksi!</p>
+                <p className="text-gray-600 mb-4">Jumlah landmark: {faceData.landmarks.length}</p>
+                <button
+                  onClick={handleRecommendation}
+                  className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded transition-colors"
+                >
+                  Lihat Rekomendasi
+                </button>
+              </div>
+            )}
+          </div>
         </>
       )}
     </div>
@@ -224,3 +294,4 @@ const WebcamPage: React.FC = () => {
 };
 
 export default WebcamPage; 
+

@@ -9,6 +9,8 @@ import Footer from './components/Footer';
 import PaymentSuccess from './pages/payment-success';
 import WebcamPage from './pages/WebcamPage';
 import ErrorBoundary from './components/ErrorBoundary';
+import RecommendationPage from './pages/RecommendationPage';
+import ColorRecommendationPage from './pages/ColorRecommendationPage';
 
 function MainContent() {
   return (
@@ -32,6 +34,8 @@ function App() {
               <Route path="/payment-success" element={<PaymentSuccess />} />
               <Route path="/" element={<MainContent />} />
               <Route path="/webcam" element={<WebcamPage />} />
+              <Route path="/recommendation" element={<RecommendationPage />} />
+              <Route path="/color-recommendation" element={<ColorRecommendationPage />} />
             </Routes>
           </main>
           <Footer />
