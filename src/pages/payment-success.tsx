@@ -19,7 +19,7 @@ const PaymentSuccess = () => {
           onClick={handleScanClick}
           className="mt-5 px-5 py-3 bg-amber-700 text-white text-base font-bold rounded-md shadow hover:bg-amber-800 transition-colors"
         >
-          Scan Now
+          Scan Sekarang
         </button>
         <a
           href="/"

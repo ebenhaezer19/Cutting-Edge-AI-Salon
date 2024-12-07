@@ -9,20 +9,19 @@ export default function Services() {
   const services = [
     {
       icon: <Scissors className="h-8 w-8 transform group-hover:rotate-45 transition-transform duration-300" />,
-      name: "AI-Powered Haircuts",
-      description: "Precision cuts guided by AI analysis of your face shape and features",
+      name: "Potong Rambut dengan AI",
+      description: "Potongan presisi dipandu oleh analisis AI untuk bentuk dan fitur wajah Anda",
       price: "Rp 70.000",
       link: "/#payment"
     },
     {
       icon: <PaintBrush className="h-8 w-8 transform group-hover:scale-110 transition-transform duration-300" />,
-      name: "Smart Color Matching Haircuts", 
-      description: "AI-recommended hair colors that complement your skin tone",
-      price: "Rp 150.000",
+      name: "Pewarnaan Rambut Pintar",
+      description: "Warna rambut yang direkomendasikan AI sesuai dengan warna kulit Anda",
+      price: "Rp 150.000", 
       link: "/#payment"
     }
   ];
-  
 
   const handlePayment = (index: number) => {
     localStorage.setItem('selectedService', 'true');
@@ -39,8 +38,8 @@ export default function Services() {
     <section id="services" className="py-16 bg-amber-50">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4 hover:text-amber-700 transition-colors duration-300">Our Services</h2>
-          <p className="text-gray-600 hover:text-amber-600 transition-colors duration-300">Experience our AI-enhanced beauty services</p>
+          <h2 className="text-3xl font-bold text-gray-800 mb-4 hover:text-amber-700 transition-colors duration-300">Layanan Kami</h2>
+          <p className="text-gray-600 hover:text-amber-600 transition-colors duration-300">Rasakan layanan kecantikan berbasis AI kami</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -60,7 +59,7 @@ export default function Services() {
                   setShowPopup2(true);
                 }
               }}>
-                Start Now 
+                Mulai Sekarang
               </a>
             </div>
           ))}
@@ -71,7 +70,7 @@ export default function Services() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 backdrop-blur-sm transition-all duration-300" onClick={() => setShowPopup1(false)}>
           <div className="bg-white rounded-lg p-6 max-w-sm w-full relative transform hover:scale-105 transition-transform duration-300" onClick={e => e.stopPropagation()}>
             <div className="text-center">
-              <h3 className="text-xl font-semibold mb-4 hover:text-amber-700 transition-colors duration-300">AI-Powered Haircuts Payment</h3>
+              <h3 className="text-xl font-semibold mb-4 hover:text-amber-700 transition-colors duration-300">Pembayaran Potong Rambut dengan AI</h3>
               <p className="text-gray-600 mb-4 hover:text-amber-600 transition-colors duration-300">
                 Silakan lanjutkan ke halaman pembayaran untuk menyelesaikan transaksi Anda.
               </p>
@@ -79,7 +78,7 @@ export default function Services() {
                 className="inline-block bg-amber-700 text-white py-2 px-4 rounded hover:bg-amber-600 transform hover:translate-y-[-4px] hover:shadow-lg transition-all duration-300"
                 onClick={() => handlePayment(0)}
               >
-                Go to Payment
+                Lanjut ke Pembayaran
               </button>
             </div>
           </div>
@@ -90,7 +89,7 @@ export default function Services() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 backdrop-blur-sm transition-all duration-300" onClick={() => setShowPopup2(false)}>
           <div className="bg-white rounded-lg p-6 max-w-sm w-full relative transform hover:scale-105 transition-transform duration-300" onClick={e => e.stopPropagation()}>
             <div className="text-center">
-              <h3 className="text-xl font-semibold mb-4 hover:text-amber-700 transition-colors duration-300">Smart Color Matching Payment</h3>
+              <h3 className="text-xl font-semibold mb-4 hover:text-amber-700 transition-colors duration-300">Pembayaran Pewarnaan Rambut Pintar</h3>
               <p className="text-gray-600 mb-4 hover:text-amber-600 transition-colors duration-300">
                 Silakan lanjutkan ke halaman pembayaran untuk menyelesaikan transaksi Anda.
               </p>
@@ -98,7 +97,7 @@ export default function Services() {
                 className="inline-block bg-amber-700 text-white py-2 px-4 rounded hover:bg-amber-600 transform hover:translate-y-[-4px] hover:shadow-lg transition-all duration-300"
                 onClick={() => handlePayment(1)}
               >
-                Go to Payment
+                Lanjut ke Pembayaran
               </button>
             </div>
           </div>
