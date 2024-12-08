@@ -26,7 +26,7 @@ export default function Location() {
               {!mapError ? (
                 <iframe
                   id="location-map"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.6664463317324!2d106.82496851476882!3d-6.175392995527964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5d2e764b12d%3A0x3d2ad6e1e0e9bcc8!2sMonumen%20Nasional!5e0!3m2!1sen!2sid!4v1647831234567!5m2!1sen!2sid"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d991.6563267379602!2d106.82692516044855!3d-6.180879337007884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sid!4v1733663792604!5m2!1sen!2sid"
                   width="100%"
                   height="450"
                   style={{ border: 0 }}
@@ -58,7 +58,7 @@ export default function Location() {
                 <MapPin className="h-6 w-6 text-amber-700 flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="font-semibold text-gray-800">Alamat</h3>
-                  <p className="text-gray-600">123 Beauty Street, Jakarta, Indonesia</p>
+                  <p className="text-gray-600">Jl. Medan Merdeka Sel. No.10, RT.11/RW.2, Gambir, Kecamatan Gambir, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10110</p>
                 </div>
               </div>
 
@@ -66,7 +66,7 @@ export default function Location() {
                 <Navigation className="h-6 w-6 text-amber-700 flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="font-semibold text-gray-800">Petunjuk Arah</h3>
-                  <p className="text-gray-600">Terletak dekat Monas, mudah diakses dengan transportasi umum</p>
+                  <p className="text-gray-600">Terletak dekat Perpustakaan Nasional, mudah diakses dengan transportasi umum</p>
                 </div>
               </div>
             </div>
